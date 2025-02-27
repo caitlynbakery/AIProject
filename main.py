@@ -1,8 +1,6 @@
 import openai
-from decouple import config
-from dotenv import load_dotenv, dotenv_values 
+from dotenv import load_dotenv
 import os
-from IPython.display import Image, display 
 import webbrowser
 
 load_dotenv()
@@ -14,7 +12,14 @@ class Chatbot:
     def __init__(self, client):
         self.client = client
         self.context = [
-            {"role": "system", "content": "You are a helpful assistant"}
+            {
+                "role": "system",
+                "content": "You are a helpful assistant providing " +
+                "information on used cars. When a VIN is received, provide " +
+                "a detailed report on the model. Include the year, make, " +
+                "model, trim, and other relevant information. " +
+                "Recommendations for purchase."
+            }
         ]
     
     def chat(self, message):
@@ -55,25 +60,23 @@ class Chatbot:
             quality="standard",
             n=1,
         )
-        
+
         # img = Image(url=response.data[0].url)
-        # output = climage.convert(response.data[0].url) 
+        # output = climage.convert(response.data[0].url)
         webbrowser.open(response.data[0].url)
 
-        # prints output on console. 
+        # prints output on console.
         # print(output)
         # display(Image(url=response.data[0].url))
 
+
 if __name__ == "__main__":
     chatbot = Chatbot(client=client)
-    print("Welcome to the friendly chatbot!")
-    print("Input a message to get started.")
+    print("Welcome Oppkey Used Car Advisor!")
+    print("Input a VIN to get started.")
     user_input = input()
 
-    while(user_input != 'stop'):
+    while (user_input != 'stop'):
         chatbot.chat(user_input)
         print("Enter stop to exit, or input a new message")
         user_input = input()
-    
-    
-
