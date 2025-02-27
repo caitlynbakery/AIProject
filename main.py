@@ -2,6 +2,7 @@ import openai
 from dotenv import load_dotenv
 import os
 from flask import Flask, render_template, request, redirect, url_for, session
+import markdown
 
 load_dotenv()
 openai.api_key = os.getenv("SECRET_KEY")
@@ -83,6 +84,7 @@ def index():
                     "information on used cars. When a VIN is received, provide " +
                     "a detailed report on the model. Include the year, make, " +
                     "model, trim, and other relevant information. " +
+                    "Format your response in Markdown with headings, lists, and emphasis. " +
                     "Recommendations for purchase."
                 }
             ]
@@ -90,31 +92,13 @@ def index():
             response_content = chatbot.chat(vin)
             image_url = chatbot.get_car_image(response_content)
             
-            # Format the response as HTML
-            # Convert newlines to <br> tags and wrap paragraphs in <p> tags
-            formatted_response = ""
-            paragraphs = response_content.split('\n\n')
-            for paragraph in paragraphs:
-                if paragraph.strip():
-                    # Check if it's a list item
-                    if paragraph.strip().startswith('- '):
-                        items = paragraph.split('\n- ')
-                        formatted_response += "<ul>"
-                        for item in items:
-                            if item.strip():
-                                # Handle the first item which might not start with "- "
-                                if item.startswith('- '):
-                                    item = item[2:]
-                                formatted_response += f"<li>{item}</li>"
-                        formatted_response += "</ul>"
-                    else:
-                        # Regular paragraph
-                        formatted_response += f"<p>{paragraph}</p>"
+            # Convert Markdown to HTML
+            html_content = markdown.markdown(response_content)
             
             # Add to chat history
             session['chat_history'].append({
                 'user': vin,
-                'assistant': formatted_response,
+                'assistant': html_content,
                 'image_url': image_url
             })
             session.modified = True
