@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Used Car Marketer by Oppkey AI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .form-container {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .form-container input[type="text"] {
+            width: 70%;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .form-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .chat-container {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .message {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .user-message {
+            font-weight: bold;
+            color: #2196F3;
+        }
+        .assistant-message {
+            margin-top: 10px;
+            white-space: pre-line;
+        }
+        .car-image {
+            margin: 20px auto;
+            max-width: 100%;
+            border-radius: 5px;
+            display: block;
+        }
+        
+        /* Loading spinner styles */
+        .spinner-container {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border-left-color: #09f;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <h1>Used Car Marketer by Oppkey AI</h1>
+    
+    <div class="form-container">
+        <form method="POST" id="vin-form">
+            <input type="text" name="vin" placeholder="Enter a VIN to get started..." required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    
+    <!-- Loading spinner -->
+    <div class="spinner-container" id="loading-spinner">
+        <div class="spinner"></div>
+        <p>Processing your request, please wait...</p>
+    </div>
+    
+    {% if chat_history %}
+        <div class="chat-container">
+            {% for message in chat_history|reverse %}
+                <div class="message">
+                    <!-- Image at the top of each message -->
+                    {% if message.image_url %}
+                        <img class="car-image" src="{{ message.image_url }}" alt="Car Image">
+                    {% endif %}
+                    <div class="user-message">USER: {{ message.user }}</div>
+                    <div class="assistant-message">
+                        <strong>RESPONSE:</strong>
+                        {{ message.assistant|safe }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    
+    <script>
+        // Show loading spinner when form is submitted
+        document.getElementById('vin-form').addEventListener('submit', function() {
+            document.getElementById('loading-spinner').style.display = 'block';
+        });
+    </script>
+</body>
+</html> 
