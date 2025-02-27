@@ -85,7 +85,7 @@ def index():
                     "a detailed report on the model. Include the year, make, " +
                     "model, trim, and other relevant information. " +
                     "Format your response in Markdown with headings, lists, and emphasis. " +
-                    "Recommendations for purchase."
+                    "Use bullet points for listing features and recommendations."
                 }
             ]
             

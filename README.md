@@ -58,3 +58,64 @@ Along with an AI-generated image of the vehicle at the top of the page.
 - Formatted HTML output with proper paragraphs and lists
 - Image display at the top of each response
 - New queries automatically clear previous results
+
+## Example Output
+
+---
+
+Example output from the helper is shown below:
+
+---
+
+Here is the detailed report for the vehicle with VIN **5YJSA1E40JF284143**:
+
+## Vehicle Information
+
+- **Year:** 2018
+- **Make:** Tesla
+- **Model:** Model S
+- **Trim:** 75D
+
+## Key Features
+
+- **Engine Type:** Electric
+- **Drive Type:** All-Wheel Drive (AWD)
+- **Body Style:** Sedan
+- **Battery Range:** Approximately 259 miles (EPA estimated for 75D trim)
+
+## Performance
+
+- **Horsepower:** Approximately 518 hp
+- **0-60 MPH:** Around 4.2 seconds
+
+## Interior & Technology
+
+- **Seating Capacity:** 5 passengers
+- **Interior Features:**
+  - Premium heated front and rear seats
+  - 17-inch touchscreen display
+  - Navigation with real-time traffic updates 
+
+- **Technology:**
+  - Advanced Autopilot capabilities
+  - Over-the-air software updates
+  - Enhanced safety features with collision avoidance and automatic emergency braking
+
+## Exterior
+
+- **Standard Wheels:** 19-inch Slipstream
+- **Lighting:** LED headlights and taillights
+- **Panoramic Glass Roof**: Standard for a spacious feel
+
+## Recommendations
+
+- **Check Battery Health:** It's essential to review the battery's condition and charging history, as this impacts the vehicle’s range and performance.
+- **Software Updates:** Ensure it has the latest software updates to benefit from improved features and security.
+- **Service Records:** Verify regular service maintenance, particularly for the electric drive train and braking system.
+
+## Additional Considerations
+
+- **Warranty:** Check if the remaining warranty is transferable, which can be a significant advantage.
+- **Autopilot Features:** Confirm the level of Autopilot capability, as this can vary based on software updates.
+
+**Note:** The information is based on typical features for the 2018 Tesla Model S 75D, but specific features may vary. Always review the specific details with the seller or authorized dealership.
